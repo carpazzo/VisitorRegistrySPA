@@ -8,21 +8,29 @@
                     <button type="button" class="close" @click="displayEditOption = false">X</button>
                 </div>
                 <div class="modal-body p-4">
-                    <form action="#" method="post">
-                        <input type="text" name="name" class="form-control form-control-lg" v-model="selectedVisitor.name" >
-                        <input type="text" name="surname" class="form-control form-control-lg" v-model="selectedVisitor.surname" >
-                        <input type="text" name="phone" class="form-control form-control-lg" v-model="selectedVisitor.phone">
-                        <input type="text" name="email" class="form-control form-control-lg" v-model="selectedVisitor.email">
-                    </form>
-                </div>
-                     <div class="modal-body p-4">
-                        <form action="#" method="post" enctype="multipart/form-data">
+                    <form action="#" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <input type="text" name="name" class="form-control form-control-lg" v-model="selectedVisitor.name">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="surname" class="form-control form-control-lg" v-model="selectedVisitor.surname">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="phone" class="form-control form-control-lg" v-model="selectedVisitor.phone">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="email" class="form-control form-control-lg" v-model="selectedVisitor.email">    
+                        </div>
+                        <hr>
+                        <div class="form-group">
                             <label>Select Image</label>
-                            <input type="file" name="image" class="form-control">
-                        </form>
-                    </div>
-                <div class="form-group">
-                    <button class="btn btn-info btn-block btn-lg" @click="displayEditOption= false, updateVisitor();">EDIT</button>
+                            <input type="file" name="image">
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                                <button class="btn btn-warning btn-block btn-lg" @click="displayEditOption= false, updateVisitor();">EDIT</button>
+                        </div>
+                    </form>   
                 </div>
             </div>
         </div>

@@ -8,22 +8,30 @@
                     <button type="button" class="close" @click="displayAddOption = false"> X </button>
                 </div>
                 <div class="modal-body p-4">
-                    <form action="#" method="post">
-                        <input type="text" name="name" class="form-control form-control-lg" placeholder="Name" v-model="newVisitor.name">
-                        <input type="text" name="surname" class="form-control form-control-lg" placeholder="Surname" v-model="newVisitor.surname">
-                        <input type="text" name="phone" class="form-control form-control-lg" placeholder="Phone" v-model="newVisitor.phone">
-                        <input type="text" name="email" class="form-control form-control-lg" placeholder="E-mail"  v-model="newVisitor.email">
+                   <form action="#" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <input type="text" name="name" class="form-control form-control-lg" placeholder="Name" v-model="newVisitor.name">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="surname" class="form-control form-control-lg" placeholder="Surname" v-model="newVisitor.surname">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="phone" class="form-control form-control-lg" placeholder="Phone" v-model="newVisitor.phone">
+                        </div>
+                        <div class="from-group">
+                            <input type="text" name="email" class="form-control form-control-lg" placeholder="E-mail"  v-model="newVisitor.email">
+                        </div>
+                        <hr>
+                        <div class="from-group">
+                            <label>Select Image </label>
+                            <input type="file" name="image" >
+                        </div>
+                        <hr>
+                        <div class="form-group">      
+                            <button type="submit" class="btn btn-success btn-block btn-lg " @click="displayAddOption = false, addVisitor();" >Add Visitor</button>
+                        </div>
                     </form>
                 </div>           
-                <div class="modal-body p-4">
-                    <form action="#" method="post" enctype="multipart/form-data">
-                        <label>Select Image</label>
-                        <input type="file" name="image" >
-                    </form>
-                </div>    
-                <div class="form-group">
-                    <button class="btn btn-success btn-block btn-lg " @click="displayAddOption = false, addVisitor();" >Add Visitor</button>
-                </div>
             </div>
         </div>
     </div>
