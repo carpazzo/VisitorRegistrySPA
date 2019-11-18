@@ -17,8 +17,9 @@
         $phone = $_POST['phone'];
         $email = $_POST['email'];  
         $temp = $_FILES['image'];
+        $filename = $_FILES['image']['name'];
         //encode the file in to base64 and store in a temporary variable, but its not saving on the database as base64 string*
-        $image = base64_encode($temp);
+        $image = base64_encode($filename);
        
         $sql = $conn->query("INSERT INTO visitors (name,surname,phone,email,image) VALUES ('$name','$surname','$phone','$email','$image') ");
         

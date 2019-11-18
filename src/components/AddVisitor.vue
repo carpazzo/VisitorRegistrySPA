@@ -24,7 +24,7 @@
                         <hr>
                         <div class="from-group">
                             <label>Select Image </label>
-                            <input type="file" name="image" >
+                            <input type="file" name="image" @change="onFileSelected" >
                         </div>
                         <hr>
                         <div class="form-group">      

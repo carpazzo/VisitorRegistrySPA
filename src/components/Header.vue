@@ -19,6 +19,9 @@
                         Add New Visitor
                     </button>
                 </div>
+                <div class="col-lg-6">
+                    <button type="button" class="btn btn-outline-warning float-right" @click ='toggle()'>Adm</button>
+                </div>
             </div>
         
             <hr class="bg-info">
@@ -36,7 +39,6 @@ export default {
     props: {
         errorMsg: String,
         successMsg: String,
-
     }
 }   
 </script>

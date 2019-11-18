@@ -18,11 +18,22 @@ new Vue({
     visitors:[],
     newVisitor:{ name: "",surname:"",phone: "",email:"",image:""},
     selectedVisitor:{},
+    selectedFile: null 
   },
   mounted(){
     this.getAllVisitors();
 },
 methods: {
+
+  toggle(){
+    this.adm = !this.adm;
+  },
+
+  onFileSelected(event){
+    this.selectedFile = event.target.files[0];
+    console.log(event)
+  },
+  
   getAllVisitors(){
     axios.get("http://localhost:8000/newcrud/API/displayAllVisitors.php?action=read").then(function(response){
       if(response.data.error){
@@ -62,7 +73,7 @@ methods: {
 
   updateVisitor(){
     var formData = App.toFormData(App.selectedVisitor);
-    axios.post("http://localhost:8000/newcrud/API/updateVisitor.php?action=update",formData).then(function(response){
+    axios.post("http://localhost:8000/newcrud/API/updateVisitor.php?action=update",formData,{headers:{'Content-Type':'multipart/form-data'}}).then(function(response){
       App.selectedVisitor = {};
       if(response.data.error){
           App.errorMsg = response.data.message;
@@ -89,6 +100,4 @@ methods: {
   },
 
 }
-
-
-})/*.$mount('#app')*/
+})

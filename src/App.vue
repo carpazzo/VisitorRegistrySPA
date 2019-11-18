@@ -26,8 +26,8 @@ export default {
   }
 }
 </script>
-
 <style>
+
   body{
     background-image: url("/images/nicenigth.jpg");
     background-repeat: no-repeat;
