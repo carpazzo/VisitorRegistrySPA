@@ -31,7 +31,7 @@ methods: {
 
   onFileSelected(event){
     this.selectedFile = event.target.files[0];
-    console.log(event)
+    console.log(event);
   },
   
   getAllVisitors(){
