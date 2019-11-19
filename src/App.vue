@@ -10,10 +10,10 @@
 
 <script>
 import Header from './components/Header.vue'
-import DisplayVisitor from './components/DisplayVisitor';
-import AddVisitor from './components/AddVisitor';
-import EditVisitor from './components/EditVisitor';
-import DeleteVisitor from './components/DeleteVisitor';
+import DisplayVisitor from './components/DisplayVisitor.vue';
+import AddVisitor from './components/AddVisitor.vue';
+import EditVisitor from './components/EditVisitor.vue';
+import DeleteVisitor from './components/DeleteVisitor.vue';
 
 export default {
   name: 'app',
@@ -27,8 +27,7 @@ export default {
 }
 </script>
 <style>
-
-  body{
+  #app{
     background-image: url("/images/nicenigth.jpg");
     background-repeat: no-repeat;
     background-size: cover;

@@ -28,7 +28,7 @@
                         </div>
                         <hr>
                         <div class="form-group">      
-                            <button type="submit" class="btn btn-success btn-block btn-lg " @click="displayAddOption = false, addVisitor();" >Add Visitor</button>
+                            <button type="submit" value="submit" name="create" class="btn btn-success btn-block btn-lg " @click="displayAddOption = false, addVisitor();" >Add Visitor</button>
                         </div>
                     </form>
                 </div>           

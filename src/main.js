@@ -12,6 +12,7 @@ new Vue({
   data: {
     errorMsg: "",
     successMsg: "",
+    adm: false,
     displayAddOption: false,
     displayEditOption: false,
     displayDeleteOption: false,
@@ -31,11 +32,11 @@ methods: {
 
   onFileSelected(event){
     this.selectedFile = event.target.files[0];
-    console.log(event);
+    
   },
   
   getAllVisitors(){
-    axios.get("http://localhost:8000/newcrud/API/displayAllVisitors.php?action=read").then(function(response){
+    axios.get("http://localhost:8000/cleanproject/API/displayAllVisitors.php?action=read").then(function(response){
       if(response.data.error){
           App.errorMsg = response.data.message;
       }
@@ -59,7 +60,8 @@ methods: {
 
   addVisitor(){
     var formData = App.toFormData(App.newVisitor)
-    axios.post("http://localhost:8000/newcrud/API/createVisitor.php?action=create", formData,{headers:{'Content-Type':'multipart/form-data'}}).then(function(response){
+    formData.append('image',this.selectedFile,this.selectedFile.name)
+    axios.post("http://localhost:8000/cleanproject/API/createVisitor.php?action=create", formData,{headers:{'Content-Type':'multipart/form-data'}}).then(function(response){
       App.newVisitor = { name: "",surname:"",phone: "",email:"",image:"" };
       if(response.data.error){
           App.errorMsg = response.data.message;
@@ -73,7 +75,8 @@ methods: {
 
   updateVisitor(){
     var formData = App.toFormData(App.selectedVisitor);
-    axios.post("http://localhost:8000/newcrud/API/updateVisitor.php?action=update",formData,{headers:{'Content-Type':'multipart/form-data'}}).then(function(response){
+    formData.append('image',this.selectedFile,this.selectedFile.name)
+    axios.post("http://localhost:8000/cleanproject/API/updateVisitor.php?action=update",formData,{headers:{'Content-Type':'multipart/form-data'}}).then(function(response){
       App.selectedVisitor = {};
       if(response.data.error){
           App.errorMsg = response.data.message;
@@ -87,7 +90,7 @@ methods: {
 
   deleteVisitor(){
     var formData = App.toFormData(App.selectedVisitor);
-    axios.post("http://localhost:8000/newcrud/API/deleteVisitor.php?action=delete",formData).then(function(response){
+    axios.post("http://localhost:8000/cleanproject/API/deleteVisitor.php?action=delete",formData).then(function(response){
       App.selectedVisitor = {};
       if(response.data.error){
           App.errorMsg = response.data.message;

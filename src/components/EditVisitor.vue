@@ -28,7 +28,7 @@
                         </div>
                         <hr>
                         <div class="form-group">
-                                <button class="btn btn-warning btn-block btn-lg" @click="displayEditOption= false, updateVisitor();">EDIT</button>
+                                <button type="submit" value="submit" name="update" class="btn btn-warning btn-block btn-lg" @click="displayEditOption= false, updateVisitor();">EDIT</button>
                         </div>
                     </form>   
                 </div>
@@ -39,7 +39,7 @@
 
 <script>
 export default {
-    name:'EdiitVisitor',
+    name:'EditVisitor',
 
 }
 </script>
