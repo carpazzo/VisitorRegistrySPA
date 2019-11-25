@@ -24,8 +24,8 @@
                         <hr>
                         <div class="from-group">
                             <label>Select Image </label>
-                            <!-- <input type="file" name="image" @change="onFileSelected" > -->
-                            <input type="file" name="image" >
+                            <input type="file" name="image" @change="onFileSelected" >
+                            
                         </div>
                         <hr>
                         <div class="form-group">      
@@ -41,13 +41,23 @@
 <script>
 export default {
     name:'AddVisitor',
+    props:{
+        displayAddOption: Boolean,
+    },
     data:function(){
         return{
-            displayAddOption: Boolean,
+            
+            newVisitor:{ name: "",surname:"",phone: "",email:"",image:""},
+            selectedFile: null  
         }
+    },
+    methods:{
+
+        onFileSelected(event){
+        this.selectedFile = event.target.files[0];
+        },
+
     }
-      
-    
 }
 </script>
 

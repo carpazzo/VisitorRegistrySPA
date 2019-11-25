@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <myHeader @adminActive ="adm = $event" @addOptionActive ="displayAddOption = $event" ></myHeader>
-    <visitor-display visitors = visitors :adm ="adm"></visitor-display>
-    <visitor-edit></visitor-edit>
+    <visitor-display visitors = visitors :adm ="adm" @editActive ="displayEditOption = $event" @deleteActive ="displayDeleteOption = $event"></visitor-display>
+    <visitor-edit :displayEditOption ="displayEditOption"></visitor-edit>
     <visitor-create :displayAddOption ="displayAddOption" ></visitor-create>
-    <visitor-delete></visitor-delete>
+    <visitor-delete :displayDeleteOption ="displayDeleteOption" ></visitor-delete>
   </div>
 </template>
 
@@ -19,9 +19,10 @@ export default {
   name: 'app',
   data:function(){
     return{
-      datatest: "on the data from app.vue",
       adm: false,
       displayAddOption: false,
+      displayEditOption: false,
+      displayDeleteOption: false,
       
     }
   },

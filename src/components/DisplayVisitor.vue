@@ -13,8 +13,8 @@
                         </div>
                         
                         <div class="card-footer text-center" v-show ="adm">
-                            <a href="#" @click ="displayEditOption = true; selectedToChange(visitor);" class="btn btn-warning ">Edit</a>
-                            <a href="#" @click ="displayDeleteOption = true; selectedToChange(visitor);" class="btn btn-danger ">Delete</a>
+                            <a href="#" @click ="openEditOption(); selectedToChange(visitor);" class="btn btn-warning ">Edit</a>
+                            <a href="#" @click ="openDeleteOption(); selectedToChange(visitor);" class="btn btn-danger ">Delete</a>
                         </div>
   
                     </div>
@@ -38,9 +38,22 @@ export default {
         return{
             displayEditOption: false,
             displayDeleteOption: false,
+            selectedVisitor:{}
         };
     },
-    
+    methods:{
+        selectedToChange(visitor){
+        this.selectedVisitor = visitor;
+        },
+        openEditOption(){
+            this.displayEditOption = true;
+            this.$emit('editActive',this.displayEditOption);
+        },
+        openDeleteOption(){
+            this.displayDeleteOption = true;
+            this.$emit('deleteActive',this.displayDeleteOption);
+        },
+    }
 
 }
 </script>

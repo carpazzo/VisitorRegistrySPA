@@ -41,6 +41,26 @@
 <script>
 export default {
     name:'EditVisitor',
+    props:{
+        displayEditOption: Boolean,
+    },
+    data:function(){
+        return{
+            selectedVisitor:{} ,
+            selectedFile: null ,  
+        }
+    },
+    methods:{
+        
+      onFileSelected(event){
+      this.selectedFile = event.target.files[0];
+      },
+      selectedToChange(visitor){
+      this.selectedVisitor = visitor;
+      },
+
+
+    }
  
 }
 

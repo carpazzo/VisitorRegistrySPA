@@ -12,14 +12,9 @@ new Vue({
   render: h => h(App),
  
   data:  {
-     
     errorMsg: "",
     successMsg: "",
     visitors:[],
-    newVisitor:{ name: "",surname:"",phone: "",email:"",image:""},
-    selectedVisitor:{},
-    selectedFile: null  
-    
   },
 
   mounted(){
@@ -27,12 +22,6 @@ new Vue({
   },
 
   methods: {
-
-    onFileSelected(event){
-      this.selectedFile = event.target.files[0];
-      
-    },
-   
     
     getAllVisitors(){
       axios.get("http://localhost:8000/cleanproject/API/displayAllVisitors.php?action=read").then(function(response){
@@ -53,10 +42,7 @@ new Vue({
       return formData;
     },
 
-    selectedToChange(visitor){
-      App.selectedVisitor = visitor;
-    },
-
+  
     addVisitor(){
       var formData = App.toFormData(App.newVisitor)
       formData.append('image',this.selectedFile,this.selectedFile.name)
