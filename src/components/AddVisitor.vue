@@ -5,7 +5,7 @@
             <div class="modal-content">
                 <div class="modal-header ">
                     <h4 class="modal-title ">New Visitor</h4>
-                    <button type="button" class="close" @click="displayAddOption = false"> X </button>
+                    <button type="button" class="close" @click="displayAddOption = !displayAddOption "> X </button>
                 </div>
                 <div class="modal-body p-4">
                    <form action="#" method="post" enctype="multipart/form-data">
@@ -29,7 +29,7 @@
                         </div>
                         <hr>
                         <div class="form-group">      
-                            <button type="submit" value="submit" name="create" class="btn btn-success btn-block btn-lg " @click="displayAddOption = false, addVisitor();" >Add Visitor</button>
+                            <button type="submit" value="submit" name="create" class="btn btn-success btn-block btn-lg " @click="displayAddOption = visitorRegistered();addVisitor();" >Add Visitor</button>
                         </div>
                     </form>
                 </div>           
@@ -56,6 +56,10 @@ export default {
         onFileSelected(event){
         this.selectedFile = event.target.files[0];
         },
+
+        visitorRegistered(){
+            alert("Visitor Added Sucessfully!");
+        }
 
     }
 }

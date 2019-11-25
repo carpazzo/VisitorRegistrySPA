@@ -24,8 +24,8 @@
             </div>
          <hr class="bg-info">
             <!-- Success and Error msg display ,hidden by default / not working*-->
-            <!-- <div class="alert alert-danger" v-if="errorMsg"> {{ errorMsg }} </div> -->
-            <!-- <div class="alert alert-success" v-if="successMsg"> {{ successMsg }} </div> -->
+            <div class="alert alert-danger" v-if="errorMsg"> {{ errorMsg }} </div>
+            <div class="alert alert-success" v-if="successMsg"> {{ successMsg }} </div>
         </div> 
     </div>
 </template>
@@ -35,7 +35,8 @@ export default {
     name: 'Header',
     data:function(){
         return{
-        
+            erroMsg:"error test!",
+            successMsg:"success test!"
         };
     },
     
@@ -45,7 +46,7 @@ export default {
             this.$emit('adminActive',this.adm);
         },
         openAddOption(){
-            this.displayAddOption = true;
+            this.displayAddOption = !this.displayAddOption ;
             this.$emit('addOptionActive',this.displayAddOption);
         },
     },

@@ -29,7 +29,7 @@
 export default {
     name:'DisplayVisitor',
     props:{
-        visitors:{type:Array, required: true},
+        visitors:{type:Array},
         adm:Boolean,
 
     },
@@ -38,7 +38,7 @@ export default {
         return{
             displayEditOption: false,
             displayDeleteOption: false,
-            selectedVisitor:{}
+            selectedVisitor:{},
         };
     },
     methods:{
@@ -53,6 +53,7 @@ export default {
             this.displayDeleteOption = true;
             this.$emit('deleteActive',this.displayDeleteOption);
         },
+        
     }
 
 }

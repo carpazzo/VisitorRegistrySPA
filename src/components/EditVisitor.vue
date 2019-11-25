@@ -6,7 +6,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Change Visitor Info</h4>
-                    <button type="button" class="close" @click="displayEditOption = false">X</button>
+                    <button type="button" class="close" @click="displayEditOption = !displayEditOption">X</button>
                 </div>
                 <div class="modal-body p-4">
                     <form action="#" method="post" enctype="multipart/form-data">
@@ -29,7 +29,7 @@
                         </div>
                         <hr>
                         <div class="form-group">
-                                <button type="submit" value="submit" name="update" class="btn btn-warning btn-block btn-lg" @click="displayEditOption= false, updateVisitor();">EDIT</button>
+                                <button type="submit" value="submit" name="update" class="btn btn-warning btn-block btn-lg" @click="displayEditOption= !displayEditOption, updateVisitor();">EDIT</button>
                         </div>
                     </form>   
                 </div>
