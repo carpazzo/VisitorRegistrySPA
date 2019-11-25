@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <myHeader @adminActive ="adm = $event" @addOptionActive ="displayAddOption = $event" ></myHeader>
-    <visitor-display :visitors="visitors" :adm ="adm" @editActive ="displayEditOption = $event" @deleteActive ="displayDeleteOption = $event"></visitor-display>
+    <visitor-display :adm ="adm" @editActive ="displayEditOption = $event" @deleteActive ="displayDeleteOption = $event"></visitor-display>
     <visitor-edit :displayEditOption ="displayEditOption"></visitor-edit>
     <visitor-create :displayAddOption ="displayAddOption" ></visitor-create>
     <visitor-delete :displayDeleteOption ="displayDeleteOption" ></visitor-delete>

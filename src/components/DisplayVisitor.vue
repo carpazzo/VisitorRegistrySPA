@@ -30,10 +30,9 @@ import axios from 'axios';
 
 export default {
     name:'DisplayVisitor',
-    props:{
-        
-        adm:Boolean,
 
+    props:{
+        adm:Boolean,
     },
 
     data:function(){
@@ -63,11 +62,12 @@ export default {
         },
 
         getAllVisitors(){
-         axios.get("http://localhost:8000/cleanproject/API/displayAllVisitors.php?action=read").then(function(response){
-        if(response.data.error){
-            this.errorMsg = response.data.message;
-        }
-        else{
+         axios.get("/displayAllVisitors.php?action=read")
+         .then(function(response){
+            if(response.data.error){
+                this.errorMsg = response.data.message;
+            }
+            else{
             this.visitors = response.data.visitors;
         }   
       });

@@ -64,7 +64,7 @@ export default {
       toFormData(obj){
             var formData = new FormData();
             for(var i in obj){
-                formData.Append(i,obj[i])
+                formData.append(i,obj[i])
             }
             return formData;
         },  
@@ -72,7 +72,7 @@ export default {
       updateVisitor(){
       var formData = this.toFormData(this.selectedVisitor);
       formData.append('image',this.selectedFile,this.selectedFile.name)
-      axios.post("http://localhost:8000/cleanproject/API/updateVisitor.php?action=update",formData,{headers:{'Content-Type':'multipart/form-data'}}).then(function(response){
+      axios.post("/updateVisitor.php?action=update",formData,{headers:{'Content-Type':'multipart/form-data'}}).then(function(response){
         this.selectedVisitor = {};
         if(response.data.error){
             this.errorMsg = response.data.message;

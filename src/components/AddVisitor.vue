@@ -60,13 +60,13 @@ export default {
         },
 
         visitorRegistered(){
-            alert("Visitor Added Sucessfully!");
+            alert("Confirm!");
         },
 
         toFormData(obj){
             var formData = new FormData();
             for(var i in obj){
-                formData.Append(i,obj[i])
+                formData.append(i,obj[i])
             }
             return formData;
         },
@@ -75,7 +75,7 @@ export default {
         addVisitor(){
         var formData = this.toFormData(this.newVisitor)
         formData.append('image',this.selectedFile,this.selectedFile.name)
-        axios.post("http://localhost:8000/cleanproject/API/createVisitor.php?action=create", formData,{headers:{'Content-Type':'multipart/form-data'}}).then(function(response){
+        axios.post("/createVisitor.php?action=create", formData,{headers:{'Content-Type':'multipart/form-data'}}).then(function(response){
             this.newVisitor = { name: "",surname:"",phone: "",email:"",image:"" };
             if(response.data.error){
                 this.errorMsg = response.data.message;
