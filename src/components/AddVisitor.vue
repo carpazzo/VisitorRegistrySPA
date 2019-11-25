@@ -24,7 +24,8 @@
                         <hr>
                         <div class="from-group">
                             <label>Select Image </label>
-                            <input type="file" name="image" @change="onFileSelected" >
+                            <!-- <input type="file" name="image" @change="onFileSelected" > -->
+                            <input type="file" name="image" >
                         </div>
                         <hr>
                         <div class="form-group">      
@@ -40,11 +41,17 @@
 <script>
 export default {
     name:'AddVisitor',
-
+    data:function(){
+        return{
+            displayAddOption: Boolean,
+        }
+    }
+      
+    
 }
 </script>
 
-<style>
+<style scoped>
     #overlay {
         position: fixed;
         top: 0;

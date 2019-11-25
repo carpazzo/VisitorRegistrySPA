@@ -24,10 +24,10 @@
         $sql = $conn->query("INSERT INTO visitors (name,surname,phone,email,image) VALUES ('$name','$surname','$phone','$email','$image') ");
         
         if($sql){
-            return $result['message'] = "New Visitor Added!";   
+            $result['message'] = "New Visitor Added!";   
         }else{
             $result['error'] = true;
-            return $result['message'] = "Failed to add Visitor";
+            $result['message'] = "Failed to add Visitor";
         }
     }
     

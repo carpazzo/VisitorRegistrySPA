@@ -12,34 +12,42 @@
         <div class="container">
             <div class="row mt-2">
                 <div class="col-lg-6">
-                    <button class="btn btn-dark float-right" @click = "displayAddOption = true">
+                    <button class="btn btn-success" @click ='openAddOption();'>
                         Add New Visitor
                     </button>
                 </div>
-                <div class="col-lg-6">
-                    <button type="button" class="btn btn-outline-warning float-right" @click ='toggle()'>Adm</button>
+               <div class="col-lg-6">
+                    <button type="button" class="btn btn-outline-warning float-right" @click ='toggle();'>
+                        Adm
+                    </button>
                 </div>
             </div>
-        
-            <hr class="bg-info">
+         <hr class="bg-info">
             <!-- Success and Error msg display ,hidden by default / not working*-->
             <!-- <div class="alert alert-danger" v-if="errorMsg"> {{ errorMsg }} </div> -->
             <!-- <div class="alert alert-success" v-if="successMsg"> {{ successMsg }} </div> -->
-            </div> 
+        </div> 
     </div>
 </template>
 
 <script>
 export default {
     name: 'Header',
+    data:function(){
+        return{
+        
+        };
+    },
     
-    props: {
-        errorMsg: String,
-        successMsg: String,
-    }
+    methods:{
+        toggle(){
+            this.adm = !this.adm;
+            this.$emit('adminActive',this.adm);
+        },
+        openAddOption(){
+            this.displayAddOption = true;
+            this.$emit('addOptionActive',this.displayAddOption);
+        },
+    },
 }   
 </script>
-
-<style>
-
-</style>

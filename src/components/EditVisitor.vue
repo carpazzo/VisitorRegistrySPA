@@ -1,6 +1,7 @@
 <template>
     <!-- Update a Visitor profile -->
     <div id="overlay" v-if="displayEditOption">
+    
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -40,11 +41,12 @@
 <script>
 export default {
     name:'EditVisitor',
-
+ 
 }
+
 </script>
 
-<style>
+<style scoped>
     #overlay {
         position: fixed;
         top: 0;

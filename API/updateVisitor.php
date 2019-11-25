@@ -25,10 +25,10 @@
         $sql = $conn->query("UPDATE visitors SET name='$name', surname='$surname',phone='$phone',email='$email', image='$image' WHERE id='$id'");
         
         if($sql){
-            return $result['message'] = "Visitor Updated";   
+            $result['message'] = "Visitor Updated";   
         }else{
             $result['error'] = true;
-            return $result['message'] = "Something Wrong!";
+            $result['message'] = "Something Wrong!";
         }
     }
 

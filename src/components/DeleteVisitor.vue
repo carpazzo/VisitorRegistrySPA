@@ -1,6 +1,7 @@
 <template>
     <!-- delete a visitor -->
-    <div id="overlay" v-if="displayDeleteOption">
+    <!-- <div id="overlay" v-if="displayDeleteOption"> -->
+    <div id="overlay">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -27,7 +28,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
     #overlay {
         position: fixed;
         top: 0;
