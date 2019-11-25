@@ -26,10 +26,12 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     name:'DisplayVisitor',
     props:{
-        visitors:{type:Array},
+        
         adm:Boolean,
 
     },
@@ -39,7 +41,13 @@ export default {
             displayEditOption: false,
             displayDeleteOption: false,
             selectedVisitor:{},
+            visitors:[],
+            errorMsg:"",
         };
+    },
+
+    mounted(){
+    this.getAllVisitors();
     },
     methods:{
         selectedToChange(visitor){
@@ -53,6 +61,17 @@ export default {
             this.displayDeleteOption = true;
             this.$emit('deleteActive',this.displayDeleteOption);
         },
+
+        getAllVisitors(){
+         axios.get("http://localhost:8000/cleanproject/API/displayAllVisitors.php?action=read").then(function(response){
+        if(response.data.error){
+            this.errorMsg = response.data.message;
+        }
+        else{
+            this.visitors = response.data.visitors;
+        }   
+      });
+    },
         
     }
 

@@ -39,6 +39,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     name:'AddVisitor',
     props:{
@@ -59,7 +61,31 @@ export default {
 
         visitorRegistered(){
             alert("Visitor Added Sucessfully!");
-        }
+        },
+
+        toFormData(obj){
+            var formData = new FormData();
+            for(var i in obj){
+                formData.Append(i,obj[i])
+            }
+            return formData;
+        },
+
+  
+        addVisitor(){
+        var formData = this.toFormData(this.newVisitor)
+        formData.append('image',this.selectedFile,this.selectedFile.name)
+        axios.post("http://localhost:8000/cleanproject/API/createVisitor.php?action=create", formData,{headers:{'Content-Type':'multipart/form-data'}}).then(function(response){
+            this.newVisitor = { name: "",surname:"",phone: "",email:"",image:"" };
+            if(response.data.error){
+                this.errorMsg = response.data.message;
+            }
+            else{
+                this.successMsg = response.data.message;
+                this.getAllVisitors();
+            }   
+        });
+        },
 
     }
 }

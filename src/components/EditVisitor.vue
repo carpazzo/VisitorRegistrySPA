@@ -39,6 +39,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
     name:'EditVisitor',
     props:{
@@ -58,6 +60,29 @@ export default {
       selectedToChange(visitor){
       this.selectedVisitor = visitor;
       },
+
+      toFormData(obj){
+            var formData = new FormData();
+            for(var i in obj){
+                formData.Append(i,obj[i])
+            }
+            return formData;
+        },  
+
+      updateVisitor(){
+      var formData = this.toFormData(this.selectedVisitor);
+      formData.append('image',this.selectedFile,this.selectedFile.name)
+      axios.post("http://localhost:8000/cleanproject/API/updateVisitor.php?action=update",formData,{headers:{'Content-Type':'multipart/form-data'}}).then(function(response){
+        this.selectedVisitor = {};
+        if(response.data.error){
+            this.errorMsg = response.data.message;
+        }
+        else{
+            this.successMsg = response.data.visitors;
+            this.getAllVisitors();
+        }   
+      });
+    },
 
 
     }

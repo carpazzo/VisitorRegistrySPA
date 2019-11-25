@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     name:'DeleteVisitor',
     props:{
@@ -32,6 +34,31 @@ export default {
         }
     },
     methods:{
+        
+        selectedToChange(visitor){
+            this.selectedVisitor = visitor;
+        },    
+        toFormData(obj){
+            var formData = new FormData();
+            for(var i in obj){
+                formData.Append(i,obj[i])
+            }
+            return formData;
+        },
+
+        deleteVisitor(){
+        var formData = this.toFormData(this.selectedVisitor);
+        axios.post("http://localhost:8000/cleanproject/API/deleteVisitor.php?action=delete",formData).then(function(response){
+            this.selectedVisitor = {};
+            if(response.data.error){
+                this.errorMsg = response.data.message;
+            }
+            else{
+                this.visitors = response.data.visitors;
+                this.getAllVisitors();
+            }   
+        });
+    },  
 
     },
 

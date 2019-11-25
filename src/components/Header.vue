@@ -35,7 +35,7 @@ export default {
     name: 'Header',
     data:function(){
         return{
-            erroMsg:"error test!",
+            errorMsg:"error test!",
             successMsg:"success test!"
         };
     },
