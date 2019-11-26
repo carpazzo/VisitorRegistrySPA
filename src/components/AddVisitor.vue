@@ -5,7 +5,7 @@
             <div class="modal-content">
                 <div class="modal-header ">
                     <h4 class="modal-title ">New Visitor</h4>
-                    <button type="button" class="close" @click="displayAddOption = !displayAddOption "> X </button>
+                    <button type="button" class="close" @click="displayAddOption = setFalse()"> X </button>
                 </div>
                 <div class="modal-body p-4">
                    <form action="#" method="post" enctype="multipart/form-data">
@@ -44,7 +44,9 @@ import axios from 'axios';
 export default {
     name:'AddVisitor',
     props:{
-        displayAddOption: Boolean,
+        displayAddOption:{
+            type:Boolean,default: false
+        },
     },
     data:function(){
         return{
@@ -54,6 +56,11 @@ export default {
         }
     },
     methods:{
+
+        setFalse(){
+            this.displayAddOption = false;
+            this.$emit('setFalse',this.displayAddOption);
+        },
 
         onFileSelected(event){
         this.selectedFile = event.target.files[0];

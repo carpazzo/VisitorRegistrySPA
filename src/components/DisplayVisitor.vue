@@ -40,7 +40,7 @@ export default {
             displayEditOption: false,
             displayDeleteOption: false,
             selectedVisitor:{},
-            visitors:[],
+            visitors:[{ name: "JAck",surname:"Daniels",phone: "080808080",email:"jdking@gamil.com",image:"no-image"}],
             errorMsg:"",
         };
     },
@@ -49,13 +49,16 @@ export default {
     this.getAllVisitors();
     },
     methods:{
+
         selectedToChange(visitor){
         this.selectedVisitor = visitor;
         },
+
         openEditOption(){
             this.displayEditOption = true;
             this.$emit('editActive',this.displayEditOption);
         },
+
         openDeleteOption(){
             this.displayDeleteOption = true;
             this.$emit('deleteActive',this.displayDeleteOption);
@@ -68,10 +71,11 @@ export default {
                 this.errorMsg = response.data.message;
             }
             else{
-            this.visitors = response.data.visitors;
-        }   
-      });
-    },
+               this.visitors = response.data.visitors;
+               /*this.$dispatch('visitors',response.data.visitors)*/
+            }   
+            });
+        },
         
     }
 

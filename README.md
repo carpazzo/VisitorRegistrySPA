@@ -6,9 +6,10 @@ This is an adaptation of the CRUD project using vue Cli , where vue scafold the 
 
 **The Problems**
 
-Comunication betwen components is trick once you emit a event change with custom events is triggering the others too , so I think It will have to use VUEX to watch the mutations and changes to be stored, so far im trying to fix that without have to use State Management.
+Comunication betwen components is trick the emit is triggering the other components.
 
-Axios is not being recognized globably normaly all the methods and data has to be inside their own component,lets see if now i can access the data form database.
+**Working ON**
+The requests are working normaly, POST and GET but some type of CORS policy is on the way, I think thats what not letting my response from axios populate my array, returning an empty array on the vue instance.
 
 
 
