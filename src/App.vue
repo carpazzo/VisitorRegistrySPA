@@ -1,10 +1,10 @@
 <template>
-  <div id="app">
-    <myHeader @adminActive ="adm = $event" @addOptionActive ="displayAddOption = $event" ></myHeader>
-    <visitor-display :adm ="adm" @editActive ="displayEditOption = $event" @deleteActive ="displayDeleteOption = $event"></visitor-display>
-    <visitor-edit :displayEditOption ="displayEditOption"></visitor-edit>
-    <visitor-create :displayAddOption ="displayAddOption" ></visitor-create>
-    <visitor-delete :displayDeleteOption ="displayDeleteOption" ></visitor-delete>
+  <div id="app" class="fill-height">
+    <myHeader></myHeader>
+    <visitor-display></visitor-display>
+    <visitor-edit></visitor-edit>
+    <visitor-create></visitor-create>
+    <visitor-delete></visitor-delete>
   </div>
 </template>
 
@@ -19,11 +19,8 @@ export default {
   name: 'app',
   data:function(){
     return{
-      adm: false,
-      displayAddOption: false,
       displayEditOption: false,
       displayDeleteOption: false,
-      
     }
   },
 
@@ -37,11 +34,18 @@ export default {
 }
 </script>
 
-<style scoped>
-  body{
+<style>
+  html, body {
+    height: 100%;
+    width: 100%;
     margin:0;
     padding: 0;
   }
+
+  .fill-height {
+    height: 100% !important;
+  }
+
   #app{
     background-image: url("../images/nicenigth.jpg");
     background-repeat: no-repeat;

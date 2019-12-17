@@ -1,7 +1,7 @@
 <?php
     include "./databaseconn.php";
     
-    $result = array('error'=>false);
+    $result = array();
     $action = '';
 
     if(isset($_GET['action'])){
@@ -24,12 +24,14 @@
         $sql = $conn->query("INSERT INTO visitors (name,surname,phone,email,image) VALUES ('$name','$surname','$phone','$email','$image') ");
         
         if($sql){
-            $result['message'] = "New Visitor Added!";   
-        }else{
-            $result['error'] = true;
-            $result['message'] = "Failed to add Visitor";
+            // created
+            http_response_code(201);
+        } else{
+            // bad request
+            http_response_code(400);
         }
+        
+        $conn->close();
     }
     
-
 ?>

@@ -1,7 +1,5 @@
 <?php
-
     include "./databaseconn.php";
-    
     $result = array('error'=>false);
     $action = '';
 
@@ -23,5 +21,5 @@
     echo json_encode($result);
 
     //not sure if this close is needed enligth me please
-    //$conn->close();
+    $conn->close();
 ?>

@@ -1,26 +1,30 @@
 <template>
     <!-- Update a Visitor profile -->
-    <div id="overlay" v-if="displayEditOption">
-    
+    <div id="overlay" v-if="isVisible">
+
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Change Visitor Info</h4>
-                    <button type="button" class="close" @click="displayEditOption = !displayEditOption">X</button>
+                    <button type="button" class="close" @click="isVisible = false;">X</button>
                 </div>
                 <div class="modal-body p-4">
-                    <form action="#" method="post" enctype="multipart/form-data">
+                    <form novalidate enctype="multipart/form-data">
                         <div class="form-group">
-                            <input type="text" name="name" class="form-control form-control-lg" v-model="selectedVisitor.name">
+                            <input type="text" name="name" class="form-control form-control-lg"
+                                v-model="selectedVisitor.name">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="surname" class="form-control form-control-lg" v-model="selectedVisitor.surname">
+                            <input type="text" name="surname" class="form-control form-control-lg"
+                                v-model="selectedVisitor.surname">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="phone" class="form-control form-control-lg" v-model="selectedVisitor.phone">
+                            <input type="text" name="phone" class="form-control form-control-lg"
+                                v-model="selectedVisitor.phone">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="email" class="form-control form-control-lg" v-model="selectedVisitor.email">    
+                            <input type="text" name="email" class="form-control form-control-lg"
+                                v-model="selectedVisitor.email">
                         </div>
                         <hr>
                         <div class="form-group">
@@ -29,9 +33,10 @@
                         </div>
                         <hr>
                         <div class="form-group">
-                                <button type="submit" value="submit" name="update" class="btn btn-warning btn-block btn-lg" @click="displayEditOption= !displayEditOption, updateVisitor();">EDIT</button>
+                            <button type="button" name="update" class="btn btn-warning btn-block btn-lg"
+                                @click="updateVisitor()">EDIT</button>
                         </div>
-                    </form>   
+                    </form>
                 </div>
             </div>
         </div>
@@ -39,56 +44,57 @@
 </template>
 
 <script>
-import axios from 'axios'
+    import axios from 'axios'
+    import EventBus from "../EventBus";
 
-export default {
-    name:'EditVisitor',
-    props:{
-        displayEditOption: Boolean,
-    },
-    data:function(){
-        return{
-            selectedVisitor:{} ,
-            selectedFile: null ,  
-        }
-    },
-    methods:{
-        
-      onFileSelected(event){
-      this.selectedFile = event.target.files[0];
-      },
-      selectedToChange(visitor){
-      this.selectedVisitor = visitor;
-      },
-
-      toFormData(obj){
-            var formData = new FormData();
-            for(var i in obj){
-                formData.append(i,obj[i])
+    export default {
+        name: 'EditVisitor',
+        data: function () {
+            return {
+                isVisible: false,
+                selectedVisitor: {},
+                selectedFile: null,
             }
-            return formData;
-        },  
-
-      updateVisitor(){
-      var formData = this.toFormData(this.selectedVisitor);
-      formData.append('image',this.selectedFile,this.selectedFile.name)
-      axios.post("/updateVisitor.php?action=update",formData,{headers:{'Content-Type':'multipart/form-data'}}).then(function(response){
-        this.selectedVisitor = {};
-        if(response.data.error){
-            this.errorMsg = response.data.message;
+        },
+        mounted() {
+            EventBus.$on("EditVisitor", (visitor) => {
+                this.selectedVisitor = visitor;
+                this.isVisible = true;
+            });
+        },
+        methods: {
+            onFileSelected(event) {
+                this.selectedFile = event.target.files[0];
+            },
+            toFormData(obj) {
+                let formData = new FormData();
+                for (var i in obj) {
+                    formData.append(i, obj[i])
+                }
+                return formData;
+            },
+            updateVisitor() {
+                let formData = this.toFormData(this.selectedVisitor);
+                if (this.selectedFile){
+                    formData.append('image', this.selectedFile, this.selectedFile.name)
+                }
+                axios.post("/updateVisitor.php?action=update", formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }).then((response) => {
+                    if (response.status === 200){
+                        EventBus.$emit("SetSuccessMessage", `${this.selectedVisitor.name} has been modified`);
+                        EventBus.$emit("RefreshVisitorList");   
+                    }
+                    this.isVisible = false;
+                }).catch(err => {
+                    EventBus.$emit("SetErrorMessage", `Failed to modify ${this.selectedVisitor.name}, ${err}`);
+                    this.isVisible = false;
+                });
+            },
         }
-        else{
-            this.successMsg = response.data.visitors;
-            this.getAllVisitors();
-        }   
-      });
-    },
-
-
     }
- 
-}
-
 </script>
 
 <style scoped>
@@ -98,6 +104,6 @@ export default {
         bottom: 0;
         left: 0;
         right: 0;
-        background: rgba(0,0,0,0.6);
+        background: rgba(0, 0, 0, 0.6);
     }
 </style>
