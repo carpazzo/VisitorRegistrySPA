@@ -17,12 +17,6 @@ import DeleteVisitor from './components/DeleteVisitor.vue';
 
 export default {
   name: 'app',
-  data:function(){
-    return{
-      displayEditOption: false,
-      displayDeleteOption: false,
-    }
-  },
 
   components: {
     'myHeader' : Header,
