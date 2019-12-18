@@ -17,10 +17,12 @@
         $sql = $conn->query("DELETE FROM visitors WHERE id='$id'");
         
         if($sql){
-            $result['message'] = "Deleted";   
+            //sucessfuly deleted
+            http_response_code(202);   
+
         }else{
-            $result['error'] = true;
-            $result['message'] = "Can't Be deleted!";
+            //Not Modified
+            http_response_code(304);
         }
     }
 ?>

@@ -49,7 +49,7 @@
             deleteVisitor() {
                 let formData = this.toFormData(this.selectedVisitor);
                 axios.post("/deleteVisitor.php?action=delete", formData).then((response) => {
-                    if (response.status === 200){
+                    if (response.status === 202){
                         EventBus.$emit("SetSuccessMessage", `${this.selectedVisitor.name} has been deleted`);
                         EventBus.$emit("RefreshVisitorList");   
                     }

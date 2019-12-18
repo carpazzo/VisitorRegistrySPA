@@ -24,6 +24,7 @@
         $sql = $conn->query("UPDATE visitors SET name='$name', surname='$surname',phone='$phone',email='$email', image='$image' WHERE id='$id'");
         
         if(!$sql){
+            //bad request
             http_response_code(400);
         }
     }

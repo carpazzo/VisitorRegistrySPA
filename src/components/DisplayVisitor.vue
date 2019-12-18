@@ -4,7 +4,7 @@
         <div class="container">
             <!-- Iterate using vue directive to display data -->
             <div class="card-columns" v-if="visitors.length > 0">
-                <div class="card bg-dark" style="width: 16rem;" v-bind:key="visitor.id" v-for="visitor in visitors">
+                <div class="card bg-dark" style="width:16rem;" v-bind:key="visitor.id" v-for="visitor in visitors">
                     <img v-bind:src="'data:image/*;base64,'+ visitor.image" class="card-img-top" alt="Card Image">
                     <div class="card-body text-light">
                         <h5 class="card-title text-center text-capitalize">{{ visitor.name }} {{ visitor.surname }}</h5>
