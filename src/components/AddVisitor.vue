@@ -78,7 +78,9 @@
             },
             addVisitor() {
                 let formData = this.toFormData(this.newVisitor);
-                formData.append('image', this.selectedFile, this.selectedFile.name);
+                if (this.selectedFile){
+                    formData.append('image', this.selectedFile);
+                }
                 axios.post("/createVisitor.php?action=create", formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'

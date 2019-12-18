@@ -76,7 +76,7 @@
             updateVisitor() {
                 let formData = this.toFormData(this.selectedVisitor);
                 if (this.selectedFile){
-                    formData.append('image', this.selectedFile, this.selectedFile.name)
+                    formData.append('image', this.selectedFile);
                 }
                 axios.post("/updateVisitor.php?action=update", formData, {
                     headers: {
